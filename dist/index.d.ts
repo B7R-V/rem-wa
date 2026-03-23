@@ -56,6 +56,7 @@ declare const MessageSchema: z.ZodObject<{
     prefix: z.ZodOptional<z.ZodString>;
     sender: z.ZodString;
     chat: z.ZodString;
+    client: z.ZodAny;
     reply: z.ZodCustom<(text: string, options?: Partial<AnyMessageContent>) => Promise<any>, (text: string, options?: Partial<AnyMessageContent>) => Promise<any>>;
     reply2: z.ZodCustom<(text: string, options?: Partial<AnyMessageContent>) => Promise<any>, (text: string, options?: Partial<AnyMessageContent>) => Promise<any>>;
     react: z.ZodCustom<(emoji: string) => Promise<any>, (emoji: string) => Promise<any>>;
@@ -136,6 +137,7 @@ declare class CommandSystem {
     private afterHandlers;
     private bot;
     private loadedPaths;
+    private processingMessages;
     constructor(bot?: any);
     setBot(bot: any): void;
     register(command: CommandOptions | Function): void;
@@ -143,10 +145,10 @@ declare class CommandSystem {
     before(handler: Handler): void;
     after(handler: Handler): void;
     use(middleware: Middleware): void;
-    findCommand(name: string): CommandOptions | undefined;
-    getCommandsByCategory(category?: string): CommandOptions[];
+    findCommand(name: string, isOwner?: boolean): CommandOptions | undefined;
+    getCommandsByCategory(category?: string, isOwner?: boolean): CommandOptions[];
     getAllCategories(): string[];
-    getAll(): CommandOptions[];
+    getAll(isOwner?: boolean): CommandOptions[];
     processMessage(msg: Message, ctx: any, config: any): Promise<boolean>;
     private runBeforeHandlers;
     private runAfterHandlers;
@@ -164,9 +166,13 @@ declare class CommandSystem {
         middlewares: number;
         beforeHandlers: number;
         afterHandlers: number;
+        loadedPaths: number;
+        cacheSize: any;
         total: number;
+        hidden: number;
         categories: number;
         files: number;
+        regexCommands: number;
     };
     abortUserCommands(userId: string): void;
     destroy(): void;
