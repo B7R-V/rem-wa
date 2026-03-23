@@ -18,6 +18,9 @@
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": {
@@ -30,7 +33,6 @@
       }
     }
   },
-  "files": ["dist"],
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
