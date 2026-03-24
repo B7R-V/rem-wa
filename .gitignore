@@ -1,14 +1,7 @@
 # Dependencies
 node_modules/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 
-# Build output
-dist/
-*.tsbuildinfo
-
-# Environment variables
+# Environment
 .env
 .env.*
 !.env.example
@@ -16,24 +9,16 @@ dist/
 # Logs
 logs/
 *.log
-npm-debug.log*
 
-# Runtime data
-*.pid
-*.seed
-
-# OS files
+# OS
 .DS_Store
 Thumbs.db
 
-# IDE files (optional, but common)
+# IDE
 .vscode/
 .idea/
 
-# Testing
-coverage/
-.nyc_output
-
-# Temp files
+# Temp
 *.tmp
 .cache/
+coverage/
