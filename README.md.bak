@@ -23,7 +23,7 @@ A professional and powerful WhatsApp bot framework built on Baileys. Create soph
 ## Installation
 
 ```bash
-npm install github:deveni0/ws
+npm install deveni0/ws
 ```
 
 ## Quick Start
